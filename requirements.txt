@@ -1,0 +1,21 @@
+pandas
+numpy
+scikit-learn
+matplotlib
+fastapi
+python-box #config box
+pyYAML
+ensure
+joblib
+types-PyYAML
+seaborn
+psycopg2
+streamlit
+ipykernel
+pip-chill==1.0.1
+requests
+category_encoders
+apache-airflow
+
+
+-e .
