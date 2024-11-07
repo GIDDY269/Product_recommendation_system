@@ -16,6 +16,9 @@ pip-chill==1.0.1
 requests
 category_encoders
 apache-airflow
-
+pyarrow
+fastparquet
+boto3<=1.15.3
+python-dotenv
 
 -e .
