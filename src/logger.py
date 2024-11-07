@@ -7,13 +7,15 @@ from datetime import datetime
 
 #define the logfile name using the current datae and time
 
-log_filename = f'{datetime.now().strftime('%m_%d_%y_%H_%M_%S')}.log'
+log_filename = f"{datetime.now().strftime('%m_%d_%y_%H_%M_%S')}.log"
+
 
 # create the path to the log file
-log_filepath = os.path.join(os.getcwd(),'logs',log_filename)
+log_filepath = os.path.join('logs',log_filename)
 
 # create the log directory if it doesn't exist
-os.makedirs(os.path.dirname(log_filename),exist_ok=True)
+
+os.makedirs('logs',exist_ok=True)
 
 # logger configuration
 
