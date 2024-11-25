@@ -20,5 +20,7 @@ pyarrow
 fastparquet
 boto3<=1.15.3
 python-dotenv
+docker
+
 
 -e .
