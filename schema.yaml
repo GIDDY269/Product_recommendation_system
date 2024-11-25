@@ -1,0 +1,9 @@
+COLUMNS:
+  event_time : datetime
+  event_type : object
+  product_id : object
+  category_id : object
+  category_code : object
+  brand :  float64
+  user_id : object
+  user_session : object
