@@ -1,6 +1,5 @@
 from src.utils.commons import read_yaml,create_directories
-from src.cloud_storage.S3_object_store import S3Client
-from botocore.exceptions import ClientError
+from src.cloud_storage.azure_blob_storage import AzureDatastore
 import os
 from datetime import datetime
 from src.logger import logging
@@ -28,19 +27,28 @@ class DataIngestion:
         start_timestamp = datetime.now().strftime("%m_%d_%Y %H:%M:%S")
 
         try:
-            # download file from landing s3 bucket
 
-            s3_client = S3Client()
+            logging.info(f'Unziping file from {self.config.local_path} into {self.config.root_dir} ')
+            unzip_folder = os.path.join(self.config.root_dir,'ingested_data') # folder to extract data to
 
-            s3_client.download_file(bucket=self.config.bucket_name,
-                                    object_name=self.config.object_name,
-                                    filename=self.config.filename)
-            # unzip ingested data
-            output_dir = os.path.join(self.config.root_dir,'Raw_ingested_data')
-            unzip_files(self.config.filename,output_dir)
+            if not os.path.exists(unzip_folder) or not os.listdir(unzip_folder) :
+                unzip_files(self.config.local_path,unzip_folder)
+                logging.info(f'Data from {self.config.local_path} unzippeded into {unzip_folder}')
+            else:
+                logging.info(f'data from {self.config.local_path} already unzipped')
+                pass
 
-            total_files = len(glob(output_dir+'\*csv'))
-            logging.info(f'Number of ingested files : {total_files}')
+
+            Azure_ws = AzureDatastore()
+
+            Azure_ws.load_local_data_to_Azure_datastore(
+                src_dir = unzip_folder,
+                target_path = self.config.target_path,
+                registered_name = self.config.registered_name
+            )
+
+            number_of_files = len(os.listdir(unzip_folder))
+            logging.info(f'Number of ingested files : {number_of_files}')
 
 
             # save metadata
@@ -51,19 +59,17 @@ class DataIngestion:
                 'start_time' : start_timestamp,
                 'end_time' : end_timestamp,
                 'duration' : duration,
-                'Number of files loaded' : total_files,
-                'data_source' : self.config.bucket_name,
-                'output_path' : output_dir
+                'Number of files loaded to workspace' : number_of_files,
+                'data_source' : self.config.local_path,
+                'target_path_from_datastore' : self.config.target_path,
+                'registered_name' : self.config.registered_name,
+                'Project name' : 'Data ingestion'
             }
-            metadata_path = os.path.join(self.config.root_dir,'metadat.json')
+            metadata_path = os.path.join(unzip_folder,'metadata.json')
             pd.Series(metadata).to_json(metadata_path)
-            logging.info(f'saved ingestion pipeline metadat into {metadata_path}')
-
-
-            # monitoring metrics
-            ingestion_speed = total_files / duration
-            logging.info(f'Ingestion speed: {ingestion_speed} files/second')
+    
+            logging.info(f'saved ingestion pipeline metadata into {metadata_path}')
             
-        except ClientError as e:
+        except Exception as e:             
             logging.info(f'error occured {e}')
             
