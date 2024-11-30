@@ -33,16 +33,16 @@ class ConfigurationManager:
         # read data ingestion configuration section from config.yaml
         config = self.config.DATA_INGESTION
 
-        # create a new artifacts folder to store ingested data
+        # create a new artifacts folder to store ingested data if doesn't exist already 
         create_directories([config.root_dir])
 
         # create and return dataingestion configuration object
 
         config_object = DataIngestionConfig(
             root_dir=config.root_dir,
-            bucket_name= config.bucket_name,
-            filename=config.filename,
-            object_name = config.object_name
+            local_path= config.local_path,
+            target_path=config.target_path,
+            registered_name= config.registered_name
         )
 
         return config_object
