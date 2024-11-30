@@ -5,7 +5,7 @@ from pathlib import Path
 
 @dataclass
 class DataIngestionConfig:
-    root_dir: Path
-    bucket_name : str
-    filename: str
-    object_name: str
+    root_dir : Path
+    local_path : Path
+    target_path : str
+    registered_name : str
