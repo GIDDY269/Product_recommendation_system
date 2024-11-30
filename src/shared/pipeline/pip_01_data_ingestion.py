@@ -17,7 +17,7 @@ class DataIngestionPipeline:
             data_ingestion_config = config.get_data_ingestion_config()
             data_ingestion = DataIngestion(config=data_ingestion_config)
             data_ingestion.initiate_data_ingestion()
-            logging.info('DATA INGESTION FROM S3 BUCKET COMPLETED')
+            logging.info('DATA INGESTION COMPLETED: DATA REGISTERED TO WORKSPACE')
         except Exception as e :
             logging.error(f'Data ingestion process failed: {e}')
             raise
