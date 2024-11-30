@@ -177,10 +177,9 @@ def unzip_files(zip_file: str, output_dir: str) -> List[str]:
         zip_file (str): The path to the zip file.
         output_dir (str): The directory to unzip the file to.
 
-    Returns:
-        List[str]: A list of file paths of the extracted files.
+  
     """
-    extracted_files = []
+    
     try:
         # Make sure output directory exists
         create_directories([output_dir])
@@ -188,6 +187,7 @@ def unzip_files(zip_file: str, output_dir: str) -> List[str]:
         
         logging.info(F'Unzipping data frrom {zip_file} to load into {output_dir}')
         # Open and extract the zip file
+
         with zipfile.ZipFile(zip_file, 'r') as zip_ref:
             zip_ref.extractall(output_dir)
 
