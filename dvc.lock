@@ -1,0 +1,26 @@
+schema: '2.0'
+stages:
+  Data_ingestion:
+    cmd: python src/shared/pipeline/pip_01_data_ingestion.py
+    deps:
+    - path: Artifacts/customer_interactions.zip
+      hash: md5
+      md5: bfc837cc1b8723f9ebd29433ad999372
+      size: 450866572
+      isexec: true
+    - path: config/config.yaml
+      hash: md5
+      md5: 8d5e36d9f47370cb8d7cc13d0cc79b56
+      size: 659
+      isexec: true
+    - path: src/shared/pipeline/pip_01_data_ingestion.py
+      hash: md5
+      md5: 369a55781d8a74b5cef8d71dcbfb8f52
+      size: 1369
+      isexec: true
+    outs:
+    - path: Artifacts/ingested_data
+      hash: md5
+      md5: 3239ea9005afc60d1b0e1668ee799900.dir
+      size: 2434277452
+      nfiles: 5
