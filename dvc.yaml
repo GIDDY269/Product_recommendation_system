@@ -1,6 +1,18 @@
 stages:
-  Data_ingestion:
-    cmd: '" " -d Users/oviemunooboro/Product_recommendation_system/Artifacts/customer_interactions.zip
-      " " -d Users/oviemunooboro/Product_recommendation_system/Artifacts/unzipped_data
-      " " -o Users/oviemunooboro/Product_recommendation_system/Artifacts/ingested_data
-      " " python Users/oviemunooboro/Product_recommendation_system/src/shared/pipeline/pip_01_data_ingestion.py'
+    Data_ingestion:
+      cmd : python src/shared/pipeline/pip_01_data_ingestion.py
+      deps : 
+        - src/shared/pipeline/pip_01_data_ingestion.py
+        - Artifacts/customer_interactions.zip
+        - config/config.yaml
+      outs :
+        - Artifacts/ingested_data
+
+    Data_validation :
+      cmd : python src/shared/pipeline/pip_02_data_validation.py
+      deps :
+        - src/shared/pipeline/pip_02_data_validation.py
+        - Artifacts/ingested_data/
+      outs :
+        - Artifacts/data_validation/status.json
+

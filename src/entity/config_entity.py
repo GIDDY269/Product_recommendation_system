@@ -9,3 +9,9 @@ class DataIngestionConfig:
     local_path : Path
     target_path : str
     registered_name : str
+
+
+@dataclass
+class DataValidationConfig:
+    root_dir : Path
+    status_file : Path

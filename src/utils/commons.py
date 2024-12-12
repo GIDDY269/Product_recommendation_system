@@ -15,6 +15,7 @@ from pathlib import Path
 from typing import Any,List
 import zipfile
 from glob import glob
+from pyspark.sql import SparkSession
         
 
 
@@ -197,9 +198,12 @@ def unzip_files(zip_file: str, output_dir: str) -> List[str]:
         logging.info(f"Error during extraction: {e}")
 
     
+def spark_session():
+    '''
+    Returns a spark_session'''
 
-
-
+    logging.info('Creating spark session')
+    return SparkSession.builder.appName('recommendation_system').getOrCreate()
 
 
 

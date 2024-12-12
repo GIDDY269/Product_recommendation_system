@@ -3,25 +3,21 @@
 DATA_INGESTION:
     root_dir : Artifacts
     local_path : /home/azureuser/cloudfiles/code/Users/oviemunooboro/Product_recommendation_system/Artifacts/customer_interactions.zip
-    target_path : Artifacts/Ingested_data
+    target_path : Artifacts/ingested_data
     registered_name : customer_interaction_dataset
 
-    bucket_name : cosmetic-store
-    filename: Artifacts/Ingested_data.zip
-    object_name: 'archive (1).zip'
+   
 
 
 DATA_VALIDATION:
     root_dir : Artifacts/data_validation
-    data_source: Artifacts/Raw_ingested_data/
     status_file: Artifacts/data_validation/status.json
-    critical_columns: 
-        - 'event_time'
-        - 'event_type'
-        - 'product_id'
-        - 'category_id'
-        - 'category_code'
-        - 'brand'
-        - 'price'
-        - 'user_id'
-        - 'user_session'
+    
+    
+
+
+
+
+
+    
+    

@@ -29,7 +29,7 @@ class DataIngestion:
         try:
 
             logging.info(f'Unziping file from {self.config.local_path} into {self.config.root_dir} ')
-            unzip_folder = os.path.join(self.config.root_dir,'ingested_data') # folder to extract data to
+            unzip_folder = os.path.join(self.config.root_dir,'unzipped_data') # folder to extract data to
 
             if not os.path.exists(unzip_folder) or not os.listdir(unzip_folder) :
                 unzip_files(self.config.local_path,unzip_folder)
@@ -48,7 +48,13 @@ class DataIngestion:
             )
 
             number_of_files = len(os.listdir(unzip_folder))
-            logging.info(f'Number of ingested files : {number_of_files}')
+            logging.info(f'Number of unzipped files : {number_of_files}')
+
+            logging.info('downloading data from datastore')
+            Azure_ws.download_from_datastore(
+                registered_name=self.config.registered_name,
+                target_path=self.config.target_path
+            )
 
 
             # save metadata

@@ -21,5 +21,6 @@ boto3<=1.15.3
 python-dotenv
 docker
 azureml-core
+great_expectations
 
 -e .

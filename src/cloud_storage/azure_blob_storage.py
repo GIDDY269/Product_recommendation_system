@@ -67,12 +67,12 @@ class AzureDatastore:
             logging.info(f'Error occured : could not upload data to blob storage: {e}')
 
     
-    def stream_from_datastore(self,registered_name):
+    def download_from_datastore(self,registered_name,target_path):
         '''
         Streams datafrom the default blobe storage using the datastore
         
         Args : 
-            - name : name of how the dataset wat registed in the workspace
+            - registered_name : name of how the dataset wat registed in the workspace
             
         outs:
             list of all the filepath of each data streams'''
@@ -80,8 +80,13 @@ class AzureDatastore:
         if registered_name in self.workspace.datasets:
 
             dataset = Dataset.get_by_name(workspace=self.workspace,name=registered_name)
+
+            dataset.download(
+                target_path=target_path,
+                overwrite=True
+            )
         
-            return dataset.to_path()
+
         
 
 

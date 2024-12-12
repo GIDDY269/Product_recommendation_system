@@ -163,3 +163,4 @@ cython_debug/
 
 minio_objects_store/
 Artifacts/
+.dvc/cache
