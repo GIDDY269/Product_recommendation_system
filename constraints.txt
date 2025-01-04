@@ -1,0 +1,6 @@
+grpcio==1.64.0
+grpcio-tools==1.64.0
+grpcio-health-checking==1.64.0
+grpcio-reflection==1.64.0
+proto-plus==1.20.0
+protobuf>=4.24.0,<5.0.0

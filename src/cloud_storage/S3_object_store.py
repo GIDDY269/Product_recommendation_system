@@ -1,10 +1,11 @@
 import boto3
+import boto3.s3
+import boto3.s3.inject
 from botocore.exceptions import ClientError
 from botocore.client import Config
 from dotenv import load_dotenv
 from src.logger import logging
 import os
-
 
 
 
@@ -32,7 +33,7 @@ class S3Client:
             '''
         try:
             # create bucket
-            self.s3client.create_bucket(Bucket='new')
+            self.s3client.create_bucket(Bucket=bucketname)
             logging.info(f'Create a Minio S3 bucket with name: {bucketname}')
         except ClientError as e:
             logging.info(f'Could not create bucket {bucketname} because {e}')

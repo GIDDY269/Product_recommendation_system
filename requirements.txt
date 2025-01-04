@@ -1,3 +1,4 @@
+pyspark
 pandas
 numpy
 scikit-learn
@@ -14,13 +15,17 @@ ipykernel > 6.0.0
 pip-chill==1.0.1
 requests
 category_encoders
-apache-airflow
+apache-airflow==2.7.2
 pyarrow
 fastparquet
 boto3<=1.15.3
 python-dotenv
 docker
-azureml-core
 great_expectations
+findspark
+feast
+redis
+s3fs
+
 
 -e .

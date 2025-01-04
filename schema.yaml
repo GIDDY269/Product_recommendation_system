@@ -1,10 +1,30 @@
-COLUMNS:
-  event_time : timestamp
-  event_type : string
-  product_id : int
-  category_id : bigint
-  category_code : string
-  brand :  string
-  user_id : int
-  user_session : string
-  price : double
+schema:
+  type: StructType
+  fields:
+    - name: event_time
+      type: TimestampType
+
+    - name: event_type
+      type: StringType
+      
+    - name: product_id
+      type: StringType
+      
+    - name: category_id
+      type: StringType
+      
+    - name: category_code
+      type: StringType
+      
+    - name: brand
+      type: StringType
+      
+    - name: price
+      type: FloatType
+      
+    - name: user_id
+      type: StringType
+      
+    - name: user_session
+      type: StringType
+      

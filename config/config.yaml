@@ -12,6 +12,12 @@ DATA_INGESTION:
 DATA_VALIDATION:
     root_dir : Artifacts/data_validation
     status_file: Artifacts/data_validation/status.json
+
+
+DATA_TRANSFORMATION : 
+    source_datapath : Artifacts/Raw_ingested_data/*.csv
+    source_parquetpath : Artifacts/loaded_data.parquet
+
     
     
 

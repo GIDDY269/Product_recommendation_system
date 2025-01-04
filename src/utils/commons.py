@@ -198,12 +198,23 @@ def unzip_files(zip_file: str, output_dir: str) -> List[str]:
         logging.info(f"Error during extraction: {e}")
 
     
-def spark_session():
+def spark_session(stop=False):
     '''
     Returns a spark_session'''
 
     logging.info('Creating spark session')
-    return SparkSession.builder.appName('recommendation_system').getOrCreate()
+    import findspark
+    findspark.init()
+    spark = SparkSession.builder \
+                .appName("Recommendation System") \
+                .config("spark.driver.memory", "6g") \
+                .getOrCreate()
+
+    
+    if stop :
+        spark.stop()
+        logging.info('spark session stopped successfully')
+    return spark
 
 
 
