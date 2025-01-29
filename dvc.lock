@@ -9,8 +9,8 @@ stages:
       size: 450866572
     - path: config/config.yaml
       hash: md5
-      md5: d4f50da51dafc59a61518400a0ad1907
-      size: 1059
+      md5: c6b41daca2cec375f86c4ff9ee2acfcd
+      size: 1331
     - path: src/shared/pipeline/pip_01_data_ingestion.py
       hash: md5
       md5: 4d8444d25a65faa4342fc1dff588de55
@@ -24,7 +24,7 @@ stages:
   Data_validation:
     cmd: python src/shared/pipeline/pip_02_data_validation.py
     deps:
-    - path: Artifacts/ingested_data/
+    - path: Artifacts/ingested_data
       hash: md5
       md5: f2c1d03b999e43bda4a6ad6c4b4722a5.dir
       size: 2434277720
@@ -36,5 +36,56 @@ stages:
     outs:
     - path: Artifacts/data_validation/status.json
       hash: md5
-      md5: 75e6a68a7a4e563510e1f00fd8b9975a
-      size: 39454
+      md5: 2a7b957b6abac7fdc65729ecff05f468
+      size: 38088
+  Data_transformation:
+    cmd: python src/shared/pipeline/pip_03_data_transformation.py
+    deps:
+    - path: Artifacts/ingested_data
+      hash: md5
+      md5: f2c1d03b999e43bda4a6ad6c4b4722a5.dir
+      size: 2434277720
+      nfiles: 6
+    - path: config/config.yaml
+      hash: md5
+      md5: c6b41daca2cec375f86c4ff9ee2acfcd
+      size: 1331
+    - path: schema.yaml
+      hash: md5
+      md5: 676c7fa77e94265836b3f15ba9a0478c
+      size: 531
+    - path: src/shared/pipeline/pip_03_data_transformation.py
+      hash: md5
+      md5: 303977775dfb4427a68f29743a2ccdcf
+      size: 2089
+    outs:
+    - path: Artifacts/FeatureStore/test_data
+      hash: md5
+      md5: acc4f71db65fed24382d5df34a69cb46.dir
+      size: 159119224
+      nfiles: 16
+    - path: Artifacts/FeatureStore/train_data
+      hash: md5
+      md5: dac9dc49cc5e392cf24d689be1ff719e.dir
+      size: 605687806
+      nfiles: 58
+    - path: Artifacts/FeatureStore/val_data
+      hash: md5
+      md5: df519d1a57c7deb78eb2d92033f99ec9.dir
+      size: 137313987
+      nfiles: 14
+    - path: Artifacts\FeatureStore\test_transformed_data
+      hash: md5
+      md5: bd77cdda4ea4c2f47e888a8648da06e1.dir
+      size: 176017485
+      nfiles: 14
+    - path: Artifacts\FeatureStore\train_transformed_data
+      hash: md5
+      md5: f96885b86e81f0fa150871b1733d713d.dir
+      size: 575717197
+      nfiles: 14
+    - path: Artifacts\FeatureStore\val_transformed_data
+      hash: md5
+      md5: 98a884529b11caa4c0a4efef4330924a.dir
+      size: 162629755
+      nfiles: 14

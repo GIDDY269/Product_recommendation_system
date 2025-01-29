@@ -23,9 +23,9 @@ python-dotenv
 docker
 great_expectations
 findspark
-feast
 redis
-s3fs
+mlflow
+hsfs
 
 
 -e .

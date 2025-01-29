@@ -3,16 +3,31 @@ stages:
       cmd : python src/shared/pipeline/pip_01_data_ingestion.py
       deps : 
         - src/shared/pipeline/pip_01_data_ingestion.py
-        - Artifacts/customer_interactions.zip
+        - Artifacts\Ingested_data.zip
         - config/config.yaml
       outs :
-        - Artifacts/ingested_data
+        - Artifacts\ingested_data
 
     Data_validation :
       cmd : python src/shared/pipeline/pip_02_data_validation.py
       deps :
         - src/shared/pipeline/pip_02_data_validation.py
-        - Artifacts/ingested_data/
+        - Artifacts/ingested_data
       outs :
         - Artifacts/data_validation/status.json
+
+    Data_transformation:
+      cmd : python src/shared/pipeline/pip_03_data_transformation.py
+      deps : 
+        - src/shared/pipeline/pip_03_data_transformation.py
+        - Artifacts/ingested_data
+        - config/config.yaml
+        - schema.yaml
+      outs : 
+        - Artifacts/FeatureStore/test_data
+        - Artifacts/FeatureStore/train_data
+        - Artifacts/FeatureStore/val_data
+        - Artifacts\FeatureStore\test_transformed_data
+        - Artifacts\FeatureStore\train_transformed_data
+        - Artifacts\FeatureStore\val_transformed_data
 

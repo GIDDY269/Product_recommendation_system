@@ -1,0 +1,22 @@
+{
+  "data": {
+    "asset": {
+      "id": "e52c1c2d-e0a0-401b-9707-156252172703",
+      "name": "ingested customer interaction data"
+    },
+    "batch_definition": {
+      "id": "79dc7fb8-5b40-4037-907e-5184adfcc1ab",
+      "name": "customer data batch"
+    },
+    "datasource": {
+      "id": "e106b882-119f-42f9-9d6d-5c79b8525a27",
+      "name": "ingested data local file_system"
+    }
+  },
+  "id": "4c89bf43-f34a-40a6-8f39-e24be5556c6d",
+  "name": "ingested_data_validation_definition",
+  "suite": {
+    "id": "aa7ebee1-a415-4e6b-a646-2c5726cd2f87",
+    "name": "ingested customer data expectation suites"
+  }
+}

@@ -35,5 +35,6 @@ setup(
     author='gideon',
     author_email='oviemunooboro@gmail.com',
     packages=find_packages(),
-    install_requires=get_requirements('requirements.txt')
+    install_requires=get_requirements('requirements.txt'),
+    setup_requires=['wheel']
 )

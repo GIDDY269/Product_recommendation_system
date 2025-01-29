@@ -1,0 +1,6 @@
+project: recomsys
+registry: local # Or your preferred registry type
+provider: local # Or your preferred provider
+offline_store:
+  type: file # Replace with the actual path
+  

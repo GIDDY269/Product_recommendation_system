@@ -1,5 +1,5 @@
 from src.utils.commons import read_yaml,create_directories
-from src.cloud_storage.azure_blob_storage import AzureDatastore
+from src.cloud_storage.S3_object_store import S3Client
 import os
 from datetime import datetime
 from src.logger import logging
@@ -10,6 +10,8 @@ from datetime import datetime
 from src.utils.commons import unzip_files
 from glob import glob
 from src.entity.config_entity import DataIngestionConfig
+from botocore.exceptions import ClientError
+import shutil
 
 
 
@@ -39,22 +41,22 @@ class DataIngestion:
                 pass
 
 
-            Azure_ws = AzureDatastore()
+            s3 = S3Client()
+            logging.info('Creating s3 bucket')
+            s3.create_bucket(bucketname='cosmetic-store-1')
+            logging.info('uploading files into s3 bucket')
+            s3.upload_folder(folder_path=unzip_folder,bucket=self.config.bucket,object_name_prefix=self.config.object_name_prefix)
+            logging.info('downloadin to local machine')
+            s3.download_folder(bucket=self.config.bucket,folder_prefix=self.config.object_name_prefix,local_dir=self.config.target_path)
 
-            Azure_ws.load_local_data_to_Azure_datastore(
-                src_dir = unzip_folder,
-                target_path = self.config.target_path,
-                registered_name = self.config.registered_name
-            )
+            # move to artifacts folder
+            shutil.move(src=self.config.target_path,dst=self.config.root_dir)
+
+        
+
 
             number_of_files = len(os.listdir(unzip_folder))
-            logging.info(f'Number of unzipped files : {number_of_files}')
-
-            logging.info('downloading data from datastore')
-            Azure_ws.download_from_datastore(
-                registered_name=self.config.registered_name,
-                target_path=self.config.target_path
-            )
+            logging.info(f'Number of ingested files : {number_of_files}')
 
 
             # save metadata
@@ -67,15 +69,15 @@ class DataIngestion:
                 'duration' : duration,
                 'Number of files loaded to workspace' : number_of_files,
                 'data_source' : self.config.local_path,
-                'target_path_from_datastore' : self.config.target_path,
-                'registered_name' : self.config.registered_name,
+                'target_path' : self.config.target_path,
                 'Project name' : 'Data ingestion'
             }
-            metadata_path = os.path.join(unzip_folder,'metadata.json')
+
+        
+            metadata_path = os.path.join(self.config.root_dir,'Data_ingestion_metadata.json')
             pd.Series(metadata).to_json(metadata_path)
     
             logging.info(f'saved ingestion pipeline metadata into {metadata_path}')
             
-        except Exception as e:             
+        except ClientError as e:             
             logging.info(f'error occured {e}')
-            

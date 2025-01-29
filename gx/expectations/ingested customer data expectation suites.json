@@ -1,0 +1,238 @@
+{
+  "expectations": [
+    {
+      "id": "37645749-73c3-404a-98dc-ce30833bee2c",
+      "kwargs": {
+        "column": "price",
+        "column_index": 0
+      },
+      "meta": {},
+      "type": "expect_column_to_exist"
+    },
+    {
+      "id": "c2d909b0-8dff-4de3-96d0-cc2d7293d831",
+      "kwargs": {
+        "column": "product_id",
+        "column_index": 0
+      },
+      "meta": {},
+      "type": "expect_column_to_exist"
+    },
+    {
+      "id": "3abdf7f4-341f-4486-9cf1-84cb364b83f9",
+      "kwargs": {
+        "column": "user_id",
+        "column_index": 0
+      },
+      "meta": {},
+      "type": "expect_column_to_exist"
+    },
+    {
+      "id": "3630c0e1-22d7-4553-8ebc-1a14012e47b9",
+      "kwargs": {
+        "column": "category_id",
+        "column_index": 0
+      },
+      "meta": {},
+      "type": "expect_column_to_exist"
+    },
+    {
+      "id": "dcf8324c-dbc8-47f9-bc54-73e3b533dbf7",
+      "kwargs": {
+        "column": "event_time",
+        "column_index": 0
+      },
+      "meta": {},
+      "type": "expect_column_to_exist"
+    },
+    {
+      "id": "00fc589c-7102-4596-b3dc-252e11954a9d",
+      "kwargs": {
+        "column": "event_type",
+        "column_index": 0
+      },
+      "meta": {},
+      "type": "expect_column_to_exist"
+    },
+    {
+      "id": "1724085d-7add-413c-8186-e6cc9c5a20e1",
+      "kwargs": {
+        "column": "category_code",
+        "column_index": 0
+      },
+      "meta": {},
+      "type": "expect_column_to_exist"
+    },
+    {
+      "id": "e378ff3a-48be-410a-9fad-93189ea4e498",
+      "kwargs": {
+        "column": "brand",
+        "column_index": 0
+      },
+      "meta": {},
+      "type": "expect_column_to_exist"
+    },
+    {
+      "id": "a0e43c4a-8b90-46de-b7a6-90aac5cafd5d",
+      "kwargs": {
+        "column": "user_session",
+        "column_index": 0
+      },
+      "meta": {},
+      "type": "expect_column_to_exist"
+    },
+    {
+      "id": "487cb5bc-1ca0-4c26-a6db-3762228b3895",
+      "kwargs": {
+        "column": "event_type",
+        "value_set": [
+          "cart",
+          "remove_from_cart",
+          "purchase",
+          "view"
+        ]
+      },
+      "meta": {},
+      "type": "expect_column_distinct_values_to_be_in_set"
+    },
+    {
+      "id": "ae3c6d7b-96bd-42bb-94a7-cb84f3ed7a73",
+      "kwargs": {
+        "column_list": [
+          "price",
+          "product_id",
+          "user_id",
+          "category_id",
+          "event_time",
+          "event_type",
+          "category_code",
+          "brand",
+          "user_session"
+        ]
+      },
+      "meta": {},
+      "type": "expect_compound_columns_to_be_unique"
+    },
+    {
+      "id": "44c0aa69-95a0-4384-9acd-fffcc9b3a2bc",
+      "kwargs": {
+        "column": "user_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "27eb500f-d95d-4489-b8bd-927db4b2d2ce",
+      "kwargs": {
+        "column": "event_time"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "13f63271-d18c-46d3-a8e2-d224a8ae617e",
+      "kwargs": {
+        "column": "product_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "4c4c83fc-f4f6-4fa0-a830-256baa158c4c",
+      "kwargs": {
+        "column": "category_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "47897263-1b1f-433c-b201-8dff88fe8f0d",
+      "kwargs": {
+        "column": "event_type"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "3c146cae-e004-4eab-850e-e3f4efb2c07a",
+      "kwargs": {
+        "column": "user_session"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "fbbb8189-6ec3-4b46-8a46-d8520f35620e",
+      "kwargs": {
+        "column": "user_id",
+        "type_": "StringType"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "dca3dfb9-4f77-457d-a598-bd01a4925221",
+      "kwargs": {
+        "column": "product_id",
+        "type_": "StringType"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "79245435-cd0a-44e7-9474-5e0a17d40a7c",
+      "kwargs": {
+        "column": "category_id",
+        "type_": "StringType"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "8fe17247-7b92-47c9-8171-fd5b7b7dd088",
+      "kwargs": {
+        "column": "user_session",
+        "type_": "StringType"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "9a624434-d097-4164-9e2d-1b62eafb6939",
+      "kwargs": {
+        "column": "event_type",
+        "type_": "StringType"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "e70c7311-e66c-4415-9777-3c4f29c040d8",
+      "kwargs": {
+        "column": "price",
+        "type_list": [
+          "DoubleType",
+          "FloatType",
+          "IntegerType"
+        ]
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_in_type_list"
+    },
+    {
+      "id": "c3f328bd-4995-4607-8f37-a76dd72140d1",
+      "kwargs": {
+        "column": "event_time",
+        "type_": "TimestampType"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    }
+  ],
+  "id": "aa7ebee1-a415-4e6b-a646-2c5726cd2f87",
+  "meta": {
+    "great_expectations_version": "1.3.0"
+  },
+  "name": "ingested customer data expectation suites",
+  "notes": null
+}

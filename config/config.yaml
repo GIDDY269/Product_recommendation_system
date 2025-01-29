@@ -2,22 +2,36 @@
 
 DATA_INGESTION:
     root_dir : Artifacts
-    local_path : /home/azureuser/cloudfiles/code/Users/oviemunooboro/Product_recommendation_system/Artifacts/customer_interactions.zip
-    target_path : Artifacts/ingested_data
-    registered_name : customer_interaction_dataset
+    bucket : cosmetic-store-1
+    object_name_prefix : customer_interation_data
+    local_path : Artifacts\Ingested_data.zip
+    target_path : ingested_data
 
    
 
 
 DATA_VALIDATION:
+    source_folder : Artifacts
+    data_directory : ingested_data
+    data_source_name : ingested data local file_system
+    asset_name : ingested customer interaction data
+    batch_definition_name : customer data batch
+    expectation_suite_name : ingested customer data expectation suites
+    validation_definition_name : ingested_data_validation_definition
     root_dir : Artifacts/data_validation
     status_file: Artifacts/data_validation/status.json
 
 
 DATA_TRANSFORMATION : 
-    source_datapath : Artifacts/Raw_ingested_data/*.csv
-    source_parquetpath : Artifacts/loaded_data.parquet
-
+    source_datapath : Artifacts/ingested_data/*.csv
+    source_parquetpath : Artifacts/Transformation/loaded_data.parquet
+    feature_store_path : Artifacts/FeatureStore
+    train_datapath : Artifacts/FeatureStore/train_data
+    val_datapath : Artifacts/FeatureStore/val_data
+    test_datapath : Artifacts/FeatureStore/test_data
+    train_transformed_datapath : Artifacts/FeatureStore/train_transformed_data
+    val_transformed_datapath : Artifacts/FeatureStore/val_transformed_data
+    test_transformed_datapath : Artifacts/FeatureStore/test_transformed_data
     
     
 

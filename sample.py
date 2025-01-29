@@ -75,3 +75,31 @@ test_df = df_with_rank.filter("is_train = false")
 ## run redis
 
 docker run --name redis -p 6379:6379 -d redis
+
+
+   data = data.withColumn('interaction_weight' , F.when(
+                    F.col('event_type') == 'view',0.3).when(
+                        F.col('event_type') == 'cart' ,0.7
+                    ).when(
+                        F.col('event_type') == 'purchase',2
+                    ).when(
+                        F.col('event_type') == 'remove_from_cart',-0.3
+                    )
+                      ).drop('event_type')
+
+
+
+# number of produt removed from cart
+
+session_frm_cart = new_training_data.filter(F.col('event_type') == 'remove_from_cart')
+num_session_frm_cart = session_frm_cart.groupBy('user_id','user_session').agg(F.count('event_type').alias('num_session_frm_cart'))
+
+num_session_frm_cart.show()
+
+# combine dataframe
+
+new_training_data= new_training_data.join(
+    num_session_frm_cart,
+    on = ['user_id','user_session'],
+    how='left'
+).na.fill({'num_session_frm_cart' : 0})
