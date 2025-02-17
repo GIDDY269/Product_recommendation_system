@@ -1,6 +1,11 @@
-project: recomsys
-registry: local # Or your preferred registry type
-provider: local # Or your preferred provider
+project: my_project   # Name of your Feast project
+provider: local       # Running locally
+registry: data\registry.db  # Location of the feature registry
+
+online_store:
+    type: redis        # Use Redis for fast online feature lookup
+    connection_string: "localhost:6379"  # Redis host and port
+
 offline_store:
-  type: file # Replace with the actual path
-  
+    type: file        # Store offline data as local files (CSV, Parquet, etc.)
+entity_key_serialization_version: 2

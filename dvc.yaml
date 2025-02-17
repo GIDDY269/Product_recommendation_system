@@ -23,11 +23,11 @@ stages:
         - Artifacts/ingested_data
         - config/config.yaml
         - schema.yaml
+        - src\cloud_storage\featurestore.py
       outs : 
-        - Artifacts/FeatureStore/test_data
         - Artifacts/FeatureStore/train_data
-        - Artifacts/FeatureStore/val_data
         - Artifacts\FeatureStore\test_transformed_data
         - Artifacts\FeatureStore\train_transformed_data
         - Artifacts\FeatureStore\val_transformed_data
+        - Artifacts\Transformation\transfrom_pipeline_obj
 

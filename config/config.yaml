@@ -7,8 +7,6 @@ DATA_INGESTION:
     local_path : Artifacts\Ingested_data.zip
     target_path : ingested_data
 
-   
-
 
 DATA_VALIDATION:
     source_folder : Artifacts
@@ -27,12 +25,10 @@ DATA_TRANSFORMATION :
     source_parquetpath : Artifacts/Transformation/loaded_data.parquet
     feature_store_path : Artifacts/FeatureStore
     train_datapath : Artifacts/FeatureStore/train_data
-    val_datapath : Artifacts/FeatureStore/val_data
     test_datapath : Artifacts/FeatureStore/test_data
     train_transformed_datapath : Artifacts/FeatureStore/train_transformed_data
-    val_transformed_datapath : Artifacts/FeatureStore/val_transformed_data
     test_transformed_datapath : Artifacts/FeatureStore/test_transformed_data
-    
+    trans_pipeline_model_path : Artifacts/Transformation/transfrom_pipeline_obj
     
 
 

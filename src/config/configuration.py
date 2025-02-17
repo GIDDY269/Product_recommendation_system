@@ -82,11 +82,10 @@ class ConfigurationManager:
             schema=schema,
             featurestore_path = config.feature_store_path,
             train_datapath = config.train_datapath,
-            val_datapath = config.val_datapath,
             test_datapath = config.test_datapath,
             train_transformed_datapath = config.train_transformed_datapath,
-            val_transformed_datapath = config.val_transformed_datapath,
-            test_transformed_datapath = config.test_transformed_datapath
+            test_transformed_datapath = config.test_transformed_datapath,
+            trans_pipeline_model_path = config.trans_pipeline_model_path
         )
 
         return config_object

@@ -25,7 +25,6 @@ great_expectations
 findspark
 redis
 mlflow
-hsfs
-
+hopsworks~=4.1.5
 
 -e .

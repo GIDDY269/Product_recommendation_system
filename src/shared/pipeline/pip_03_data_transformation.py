@@ -6,7 +6,9 @@ from src.shared.components.DataTransformation import DataTransformation
 from src.logger import logging
 import json
 from src.utils.commons import spark_session
-
+import pyspark.sql.functions as F
+import pandas as pd
+from src.cloud_storage.featurestore import Featurestore
 
 PIPELINE_NAME = 'SHARED DATA TRANSFORMATION PIPELINE'
 
@@ -24,17 +26,32 @@ class DatavalidationPipeline:
             config = config_manager.get_data_transformation_config()
             data_transform = DataTransformation(config)
             # load data
-            data_path = data_transform.load_data()
-            # split into train, val and test
-            train_path,val_path,test_path = data_transform.train_val_test_split(data_path)
+
             # perform feature engineering
-            data_transform.feature_engineering(train_path)
-            data_transform.feature_engineering(val_path)
-            data_transform.feature_engineering(test_path)
+           # data = data_transform.feature_engineering()
             # perform feature transformation
-            data_transform.feature_transformation(train_path=train_path,val_path=val_path,
-                                                  test_path=test_path)
-            logging.info('Data transformation completed sucessfully')
+            spark = data_transform.spark
+            data = spark.read.parquet('Artifacts\FeatureStore\\train_data')
+            data_transform.feature_transformation(data)
+            #logging.info('Data transformation completed sucessfully')
+
+            
+            #logging.info('uploading data into feature store')
+            Fs = Featurestore()
+
+            feature_refs = Fs.get_feature_references()
+
+            
+            entity_rows = [ {
+            "user_id": '384702486',
+            "product_id":   '5738998',
+            "user_session": 'd9bcbaa1-15e7-41ec-a49d-73f43e9ac769',
+            'category_id':'1487580013858390233'
+                }]
+            feature_dict = Fs.get_online_features(
+                feature_refs=feature_refs,
+                entity_rows=entity_rows)
+            print(feature_dict)
 
         except Exception as e:
             logging.error(f' data validation failed {e}')
@@ -45,6 +62,7 @@ if __name__ == '__main__':
         logging.info(f'##================================== Starting {PIPELINE_NAME} pipeline ========================================== ##')
         data_validation_pipeline = DatavalidationPipeline()
         data_validation_pipeline.run()
+        
         logging.info(f'## ====================================={PIPELINE_NAME} Terminated sucessfully =============================== ##')
     except Exception as e :
         logging.error(f'Data Transformation pipeline failed: {e}')

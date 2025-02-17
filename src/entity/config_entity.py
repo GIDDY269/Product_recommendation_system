@@ -31,8 +31,7 @@ class DataTransformationConfig:
     schema : dict
     featurestore_path : Path
     train_datapath : Path
-    val_datapath : Path
     test_datapath : Path
     train_transformed_datapath : Path
-    val_transformed_datapath : Path
     test_transformed_datapath : Path
+    trans_pipeline_model_path : Path
