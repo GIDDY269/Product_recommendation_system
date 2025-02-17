@@ -28,12 +28,10 @@ class DatavalidationPipeline:
             # load data
 
             # perform feature engineering
-           # data = data_transform.feature_engineering()
+            data = data_transform.feature_engineering()
             # perform feature transformation
-            spark = data_transform.spark
-            data = spark.read.parquet('Artifacts\FeatureStore\\train_data')
             data_transform.feature_transformation(data)
-            #logging.info('Data transformation completed sucessfully')
+            logging.info('Data transformation completed sucessfully')
 
             
             #logging.info('uploading data into feature store')
